@@ -3,7 +3,6 @@ package com.herald.madartask.di
 import android.content.Context
 import androidx.room.Room
 import com.herald.madartask.data.UserDatabase
-import com.herald.madartask.data.UserDao
 import com.herald.madartask.data.UserDatabase.Companion.DB_USERS_NAME
 import com.herald.madartask.data.UsersRepoImpl
 import com.herald.madartask.domain.UsersRepo
@@ -29,11 +28,8 @@ object AppModule {
     }
 
     @Provides
-    fun provideUserDao(db: UserDatabase): UserDao = db.userDao()
-
-    @Provides
     @Singleton
-    fun provideUserRepository(userDao: UserDao): UsersRepo {
-        return UsersRepoImpl(userDao)
+    fun provideUserRepository(db: UserDatabase): UsersRepo {
+        return UsersRepoImpl(db.userDao())
     }
 }

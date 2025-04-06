@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:gravity="center"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:id="@+id/layoutContainer"
+    android:padding="30dp">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:text="@string/please_enter_your_info"
+        android:textSize="24sp"
+        />
+    <Space
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        />
+    <com.google.android.material.textfield.TextInputLayout
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="@dimen/default_margin"
+        app:boxCornerRadiusBottomEnd   ="@dimen/default_radius"
+        app:boxCornerRadiusTopEnd      ="@dimen/default_radius"
+        app:boxCornerRadiusBottomStart ="@dimen/default_radius"
+        app:boxCornerRadiusTopStart    ="@dimen/default_radius">
+        <EditText
+            android:id="@+id/edtName"
+            android:autofillHints="name"
+            android:inputType="textPersonName"
+            android:hint="@string/full_name"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
+    </com.google.android.material.textfield.TextInputLayout>
+    <com.google.android.material.textfield.TextInputLayout
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="@dimen/default_margin"
+        app:boxCornerRadiusBottomEnd   ="@dimen/default_radius"
+        app:boxCornerRadiusTopEnd      ="@dimen/default_radius"
+        app:boxCornerRadiusBottomStart ="@dimen/default_radius"
+        app:boxCornerRadiusTopStart    ="@dimen/default_radius">
+        <EditText
+            android:id="@+id/edtAge"
+            android:autofillHints="age"
+            android:inputType="number"
+            android:hint="@string/age"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
+    </com.google.android.material.textfield.TextInputLayout>
+    <com.google.android.material.textfield.TextInputLayout
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="@dimen/default_margin"
+        app:boxCornerRadiusBottomEnd   ="@dimen/default_radius"
+        app:boxCornerRadiusTopEnd      ="@dimen/default_radius"
+        app:boxCornerRadiusBottomStart ="@dimen/default_radius"
+        app:boxCornerRadiusTopStart    ="@dimen/default_radius">
+        <EditText
+            android:id="@+id/edtJob"
+            android:autofillHints="jobtitle"
+            android:inputType="text"
+            android:hint="@string/job_title"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
+    </com.google.android.material.textfield.TextInputLayout>
+    <com.google.android.material.textfield.TextInputLayout
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="@dimen/default_margin"
+        app:boxCornerRadiusBottomEnd   ="@dimen/default_radius"
+        app:boxCornerRadiusTopEnd      ="@dimen/default_radius"
+        app:boxCornerRadiusBottomStart ="@dimen/default_radius"
+        app:boxCornerRadiusTopStart    ="@dimen/default_radius">
+        <EditText
+            android:autofillHints="gender"
+            android:inputType="text"
+            android:id="@+id/edtGender"
+            android:hint="@string/gender"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            />
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <Space
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        />
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/btnSaveUser"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/save_user"
+        android:layout_marginBottom="10dp"
+        app:cornerRadius="10dp"
+        />
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/btnShowAllUsers"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="10dp"
+        android:text="@string/show_all_users"
+        app:cornerRadius="10dp"
+        />
+</LinearLayout>
