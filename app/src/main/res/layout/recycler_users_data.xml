@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:background="@drawable/recycler_background"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginTop="@dimen/default_margin"
+    android:layout_marginHorizontal="@dimen/default_margin"
+    android:padding="10dp"
+    >
+    <TextView
+        android:id="@+id/tvName"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        />
+    <TextView
+        android:id="@+id/tvAge"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        />
+        <TextView
+        android:id="@+id/tvJob"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        />
+        <TextView
+        android:id="@+id/tvGender"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        />
+
+</LinearLayout>

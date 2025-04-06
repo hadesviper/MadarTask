@@ -7,4 +7,5 @@
     <string name="please_enter_your_info">Please Enter your Info.</string>
     <string name="age">Age</string>
     <string name="gender">Gender</string>
+    <string name="gender_hint">Gender:</string>
 </resources>

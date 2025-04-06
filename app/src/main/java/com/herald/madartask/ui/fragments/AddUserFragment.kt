@@ -1,9 +1,12 @@
 package com.herald.madartask.ui.fragments
 
+import android.content.Context
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.view.inputmethod.InputMethodManager
+import android.widget.ArrayAdapter
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
@@ -25,6 +28,7 @@ class AddUserFragment: Fragment() {
         savedInstanceState: Bundle?
     ): View {
         buttonsSettingUp()
+        genderSpinnerSettingUp()
         return binding.root
     }
     private fun buttonsSettingUp(){
@@ -39,6 +43,14 @@ class AddUserFragment: Fragment() {
             }
         }
     }
+    private fun genderSpinnerSettingUp(){
+        val options = arrayOf("Male", "Female")
+        val spinnerAdapter = ArrayAdapter(requireContext(), android.R.layout.simple_spinner_item, options)
+        spinnerAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
+        binding.spinnerGender.run {
+            adapter = spinnerAdapter
+        }
+    }
 
     private fun showInvalidInputsToast() {
         Toast.makeText(requireContext(),"All fields are required!",Toast.LENGTH_SHORT).show()
@@ -46,7 +58,7 @@ class AddUserFragment: Fragment() {
 
     private fun validateInputs(): Boolean{
         binding.run {
-            return (edtName.text.isBlank() || edtAge.text.isBlank() || edtJob.text.isBlank() || edtGender.text.isBlank())
+            return (edtName.text.isBlank() || edtAge.text.isBlank() || edtJob.text.isBlank())
         }
     }
 
@@ -55,7 +67,7 @@ class AddUserFragment: Fragment() {
             edtName.text.clear()
             edtAge.text.clear()
             edtJob.text.clear()
-            edtGender.text.clear()
+            spinnerGender.setSelection(0)
             clearFocus()
         }
         Toast.makeText(requireContext(),"User Added Successfully!",Toast.LENGTH_SHORT).show()
@@ -66,13 +78,14 @@ class AddUserFragment: Fragment() {
             edtName.clearFocus()
             edtAge.clearFocus()
             edtJob.clearFocus()
-            edtGender.clearFocus()
         }
+        val imm = view?.context?.getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
+        imm.hideSoftInputFromWindow(view?.windowToken, 0)
     }
 
     private fun saveUser(){
         binding.run {
-            usersViewModel.addUser(UserModel(name = edtName.text.toString(), age = edtAge.text.toString().toInt(), jobTitle = edtJob.text.toString(), gender = edtGender.text.toString()))
+            usersViewModel.addUser(UserModel(name = edtName.text.toString(), age = edtAge.text.toString().toInt(), jobTitle = edtJob.text.toString(), gender = spinnerGender.selectedItem.toString()))
             clearAllFields()
         }
     }
