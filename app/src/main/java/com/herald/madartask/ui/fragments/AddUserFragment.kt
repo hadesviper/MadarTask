@@ -19,7 +19,8 @@ import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
 class AddUserFragment: Fragment() {
-    private val binding by lazy { FragmentAddUserBinding.inflate(layoutInflater) }
+    private var _binding: FragmentAddUserBinding? = null
+    private val binding get() = _binding!!
     private val usersViewModel: UsersViewModel by activityViewModels()
 
     override fun onCreateView(
@@ -27,9 +28,13 @@ class AddUserFragment: Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
+        _binding = FragmentAddUserBinding.inflate(inflater, container, false)
+        return binding.root
+    }
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
         buttonsSettingUp()
         genderSpinnerSettingUp()
-        return binding.root
     }
     private fun buttonsSettingUp(){
         binding.run {
@@ -79,7 +84,7 @@ class AddUserFragment: Fragment() {
             edtAge.clearFocus()
             edtJob.clearFocus()
         }
-        val imm = view?.context?.getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
+        val imm = requireContext().getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
         imm.hideSoftInputFromWindow(view?.windowToken, 0)
     }
 
@@ -88,5 +93,9 @@ class AddUserFragment: Fragment() {
             usersViewModel.addUser(UserModel(name = edtName.text.toString(), age = edtAge.text.toString().toInt(), jobTitle = edtJob.text.toString(), gender = spinnerGender.selectedItem.toString()))
             clearAllFields()
         }
+    }
+    override fun onDestroyView() {
+        super.onDestroyView()
+        _binding = null
     }
 }

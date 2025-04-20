@@ -16,7 +16,9 @@ import kotlinx.coroutines.launch
 
 @AndroidEntryPoint
 class ShowUsersFragment: Fragment() {
-    private val binding by lazy { FragmentShowUsersBinding.inflate(layoutInflater) }
+    private var _binding: FragmentShowUsersBinding? = null
+    private val binding get() = _binding!!
+
     private val usersViewModel: UsersViewModel by activityViewModels()
 
     override fun onCreateView(
@@ -24,10 +26,13 @@ class ShowUsersFragment: Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        initUsersDataRecyclerView()
+        _binding = FragmentShowUsersBinding.inflate(inflater, container, false)
         return binding.root
     }
-
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        initUsersDataRecyclerView()
+    }
     private fun initUsersDataRecyclerView() {
         lifecycleScope.launch {
             usersViewModel.allUsers.collect { users ->
@@ -37,5 +42,9 @@ class ShowUsersFragment: Fragment() {
                 }
             }
         }
+    }
+    override fun onDestroyView() {
+        super.onDestroyView()
+        _binding = null
     }
 }
